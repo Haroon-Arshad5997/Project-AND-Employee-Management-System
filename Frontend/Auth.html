@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Please Wait</title>
+
+    <style>
+        :root {
+            --bg-main: #0F172A;
+            --bg-secondary: #1E293B;
+
+            --primary: #2563EB;
+            --primary-hover: #3B82F6;
+            --accent: #14B8A6;
+
+            --text-main: #F8FAFC;
+            --text-secondary: #94A3B8;
+
+            --border: #334155;
+
+            --success: #22C55E;
+            --error: #EF4444;
+        }
+        *{
+            color: var(--text-main);
+            font-family: Inter;
+        }
+
+        .Loading-PG{
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-secondary);
+            font-weight: 200;
+            letter-spacing: 3px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader {
+            width: 90px;
+            height: 14px;
+            --c:#ffffff 92%,#ffffff00;
+            background: 
+                radial-gradient(circle 7px at bottom,var(--c)) 0 0,
+                radial-gradient(circle 7px at top   ,var(--c)) 0 100%;
+            background-size: calc(100%/4) 50%;
+            background-repeat: repeat-x;
+            animation: l11 1s infinite;
+        }
+        @keyframes l11 {
+            80%,100% {background-position: calc(100%/3) 0,calc(100%/-3) 100%}
+        }
+    </style>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container-fluid Loading-PG" id="LoadingScreen">
+        <h3>Please Wait!</h3>
+        <div class="loader"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+
+
+
+    <script>
+
+        const LoadingScreen = document.getElementById('LoadingScreen');
+        window.addEventListener('load', () => {
+            LoadingScreen.style.display = 'none';
+        });
+
+        
+    </script>
+  </body>
+</html>
