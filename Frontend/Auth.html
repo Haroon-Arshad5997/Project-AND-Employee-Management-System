@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Please Wait</title>
 
+    <link rel="icon" href="/Frontend/Pics/Logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <style>
@@ -34,18 +35,19 @@
 
         body {
             margin: 0;
-            background-color: var(--bg-main);
+            background: url(https://images.unsplash.com/photo-1614850523011-8f49ffc73908?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bGlnaHQlMjBibHVlJTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D);
             min-height: 100vh;
             user-select: none;
         }
 
         .Loading-PG{
             position: fixed;
+            z-index: 1000;
             width: 100%;
             height: 100vh;
             background-color: var(--bg-secondary);
-            font-weight: 200;
-            letter-spacing: 3px;
+            font-weight: 600;
+            letter-spacing: 1px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -88,6 +90,7 @@
             border-radius: 20px;
             width: 40vw;
             padding: 40px;
+            animation: FadeIn 1s linear;
         }
 
         #FormSection{
@@ -146,8 +149,48 @@
             justify-content: center;
         }
 
+        .Element-Section{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: FadeIn 1s linear;
+
+            svg{
+                fill: rgba(255, 255, 255, 0.615);
+            }
+
+            p{
+                color: var(--text-main);
+            }
+
+            sub{
+                color: var(--text-secondary);
+            }
+        }
+
         @keyframes l11 {
             80%,100% {background-position: calc(100%/3) 0,calc(100%/-3) 100%}
+        }
+
+        @keyframes FadeIn {
+            from{
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+            to{
+                transform: translateY(0px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes BlurIn {
+            from{
+                filter: blur(20px);
+            }
+            to{
+                filter: blur(0);
+            }
         }
     </style>
 
@@ -159,6 +202,7 @@
   <body>
 
     <div class="Loading-PG" id="LoadingScreen">
+        <img src="Pics/Logo.png" width="100rem" height="100rem"/>
         <h3>Please Wait!</h3>
         <div class="loader"></div>
     </div>
@@ -173,8 +217,43 @@
     
     <main class="container-fluid d-flex flex-row p-0">
         <!-- Left Side -->
-        <aside class="col-6">
+        <aside class="col-6 Element-Section">
 
+            <h1 class="mb-5">Manage Your Team & Projects <br>More <b style="color: var(--accent);">Efficiently</b></h1>
+
+            <div>
+                <section class="d-flex flex-row align-items-center">
+                    <div style="background-color: var(--primary-hover); padding: 20px; border-radius: 15px;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M40-272q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v32q0 33-23.5 56.5T600-160H120q-33 0-56.5-23.5T40-240v-32Zm698 112q11-18 16.5-38.5T760-240v-40q0-44-24.5-84.5T666-434q51 6 96 20.5t84 35.5q36 20 55 44.5t19 53.5v40q0 33-23.5 56.5T840-160H738ZM247-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47Zm466 0q-47 47-113 47-11 0-28-2.5t-28-5.5q27-32 41.5-71t14.5-81q0-42-14.5-81T544-792q14-5 28-6.5t28-1.5q66 0 113 47t47 113q0 66-47 113Z"/></svg></div>&ensp;&ensp;
+                    <div style="line-height: 4px;">
+                        <p>Employee Management</p>
+                        <sub>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, dolores!</sub>
+                    </div>
+                </section><br>
+
+                <section class="d-flex flex-row align-items-center">
+                    <div style="background-color: var(--accent); padding: 20px; border-radius: 15px;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h168q13-36 43.5-58t68.5-22q38 0 68.5 22t43.5 58h168q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm120-160h200q17 0 28.5-11.5T560-320q0-17-11.5-28.5T520-360H320q-17 0-28.5 11.5T280-320q0 17 11.5 28.5T320-280Zm0-160h320q17 0 28.5-11.5T680-480q0-17-11.5-28.5T640-520H320q-17 0-28.5 11.5T280-480q0 17 11.5 28.5T320-440Zm0-160h320q17 0 28.5-11.5T680-640q0-17-11.5-28.5T640-680H320q-17 0-28.5 11.5T280-640q0 17 11.5 28.5T320-600Zm181.5-198.5Q510-807 510-820t-8.5-21.5Q493-850 480-850t-21.5 8.5Q450-833 450-820t8.5 21.5Q467-790 480-790t21.5-8.5Z"/></svg></div>&ensp;&ensp;
+                    <div style="line-height: 4px;">
+                        <p>Project Management</p>
+                        <sub>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, dolores!</sub>
+                    </div>
+                </section><br>
+
+                <section class="d-flex flex-row align-items-center">
+                    <div style="background-color: var(--success); padding: 20px; border-radius: 15px;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m424-424-86-86q-11-11-28-11t-28 11q-11 11-11 28t11 28l114 114q12 12 28 12t28-12l226-226q11-11 11-28t-11-28q-11-11-28-11t-28 11L424-424ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Z"/></svg></div>&ensp;&ensp;
+                    <div style="line-height: 4px;">
+                        <p>Task Tracking</p>
+                        <sub>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, dolores!</sub>
+                    </div>
+                </section><br>
+
+            <section class="d-flex flex-row align-items-center">
+                <div style="background-color: var(--primary-hover); padding: 20px; border-radius: 15px;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M217.5-177.5Q200-195 200-220v-120q0-25 17.5-42.5T260-400q25 0 42.5 17.5T320-340v120q0 25-17.5 42.5T260-160q-25 0-42.5-17.5Zm240 0Q440-195 440-220v-320q0-25 17.5-42.5T500-600q25 0 42.5 17.5T560-540v320q0 25-17.5 42.5T500-160q-25 0-42.5-17.5Zm240 0Q680-195 680-220v-520q0-25 17.5-42.5T740-800q25 0 42.5 17.5T800-740v520q0 25-17.5 42.5T740-160q-25 0-42.5-17.5Z"/></svg></div>&ensp;&ensp;
+                <div style="line-height: 4px;">
+                    <p>Analysis & Reports</p>
+                    <sub>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, dolores!</sub>
+                </div>
+            </section>
+            </div>
 
         </aside>
 
@@ -239,6 +318,7 @@
             document.querySelector('title').innerHTML = "Verify Yourself!"
             LoadingScreen.style.display = 'none';
             LoadingScreen.classList.add('hide');
+            document.body.style.animation = 'BlurIn 0.5s linear';
         });
 
         
