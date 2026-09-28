@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const {exec} = require('child_process');
+const bcryptjs = require('bcryptjs');
 
 const app = express();
 const PORT = 4000;

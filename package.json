@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Haroon-Arshad5997/Project-AND-Employee-Management-System#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "child_process": "^1.0.2",
     "express": "^5.2.1",
     "mongoose": "^9.10.2"
