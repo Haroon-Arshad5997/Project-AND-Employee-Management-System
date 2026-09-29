@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="Pics/Logo.png">
+    <title>Welcome to the Lobby!</title>
+
+    <style>
+        :root {
+            --bg-main: #0F172A;
+            --bg-secondary: #1E293B;
+
+            --primary: #2563EB;
+            --primary-hover: #3B82F6;
+            --accent: #14B8A6;
+
+            --text-main: #F8FAFC;
+            --text-secondary: #94A3B8;
+
+            --border: #334155;
+
+            --success: #22C55E;
+            --error: #EF4444;
+        }
+
+        *{
+            font-family: Inter !important;
+            padding: 0;
+            margin: 0;
+            user-select: none;
+        }
+
+        body{
+            user-select: none;
+            background: linear-gradient(var(--bg-main), var(--bg-secondary));
+            color: var(--text-main) !important;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100dvh;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: 6rem 1fr;
+            grid-template-areas: "Navbar Navbar Navbar Navbar Navbar Navbar" "Sidebar ContentSection ContentSection ContentSection ContentSection ContentSection";
+        }
+
+        .Navbar{
+            border-bottom: 1px solid var(--primary-hover);
+            color: var(--text-main) !important;
+            background-color: var(--bg-main);
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            grid-area: Navbar;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .Sidebar{
+            grid-area: Sidebar;
+            color: var(--text-main) !important;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 5px;
+            padding-right: 5px;
+            background-color: var(--bg-main);
+            box-shadow: 2px 0px 2px var(--primary-hover);
+            border-bottom-right-radius: 20px;
+
+            button{
+                width: 100%;
+                background-color: transparent;
+                border-radius: 6px;
+                color: var(--text-main);
+                fill: var(--text-secondary);
+                border: 0px;
+                padding: 15px;
+                margin: 2px;
+                transition: 0.3s ease-in-out;
+                outline: none;
+
+                section{
+                    display: flex;
+                    gap: 10px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    align-items: center;
+                }
+            }
+
+            button:hover, button:focus{
+                background-color: var(--primary);
+                fill: var(--primary-hover);
+                color: var(--text-secondary);
+            }
+        }
+
+        .Content-Section{
+            grid-area: ContentSection;
+            color: var(--text-main) !important;
+            padding: 20px;
+        }
+
+        .ver-line{
+            background-color: var(--primary-hover);
+            color: var(--text-main) !important;
+            width: 1px;
+            height: 85px;
+        }
+
+        .Logo-Section{
+            color: var(--text-main) !important;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #ProfileModal{
+            background-color: var(--bg-main);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            width: 90dvw;
+            height: 90dvh;
+            color: var(--text-main);
+            align-self: center;
+            justify-self: center;
+            padding: 20px;
+
+            header{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            button{
+                background-color: transparent;
+                border: 0px;
+                color: var(--text-main);
+                fill: var(--text-main);
+                transition: 0.5s ease-in-out;
+            }
+
+            button:hover{
+                transform: rotate(360deg);
+            }
+        }
+
+        #ProfileModal:open{
+            animation: FadeIn 0.5s ease-in;
+        }
+
+        #ProfileModal:open::backdrop{
+            background-color: rgba(0, 0, 0, 0.66);
+        }
+
+        .ModalProfileimg{
+            border-radius: 100%;
+            width: 20dvw;
+            border: 5px solid var(--accent);
+        }
+
+        .Profile-Section{
+            button{
+                 color: var(--text-main) !important;
+                padding: 10px;
+                background-color: transparent;
+                border: 0px;
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+                align-items: center;
+
+                section{
+                    text-align: left;
+                    line-height: 1px;
+                }
+            }
+
+            img{
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 100%;
+            }
+        }
+
+        @keyframes FadeIn {
+            from{opacity: 0; transform: translateY(-20px);}
+            to{opacity: 1; transform: translateX(0px);}
+        }
+
+        @media (max-width: 769px) {
+            .Logo-Section{
+
+                line-height: 1px;
+                img{
+                    width: 80px;
+                    height: 80px;
+                } 
+                sub{
+                    font-size: 10px;
+                }
+            }
+
+            .Sidebar{
+                font-size: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-left: 1px;
+                padding-right: 1px;
+
+                button{
+                    width: max-content;
+
+                    section{
+                        gap: 0;
+                    }
+                }
+            }
+
+            .Profile-Section{
+                section{
+                    display: none;
+                }
+            }
+        }
+    </style>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Navbar -->
+    <header class="Navbar">
+        <!-- Logo Section -->
+        <section class="Logo-Section">
+            <img src="Pics/Logo.png" width="90rem" height="90rem"/>
+            <div class="ver-line"></div>
+            <section>
+                <h4><b>SyncBoard</b></h4>
+                <sub>Comunicate Better, Manage Faster!</sub>
+            </section>
+        </section>
+
+        <!-- Profile Section -->
+        <section class="Profile-Section">
+
+            <button id="ProfileBTN" command="show-modal" commandfor="ProfileModal">
+                <img src="https://media.istockphoto.com/id/1208175274/vector/avatar-vector-icon-simple-element-illustrationavatar-vector-icon-material-concept-vector.jpg?s=612x612&w=0&k=20&c=t4aK_TKnYaGQcPAC5Zyh46qqAtuoPcb-mjtQax3_9Xc="/>
+                <section>
+                    <p class="UserName"></p>
+                    <b id="ActivePointer">●</b>
+                    <sub class="UserStatus"></sub>
+                </section>
+            </button>
+
+        </section>
+    </header>
+
+    <!-- Profile Modal -->
+    <dialog id="ProfileModal">
+        <header>
+            <img src="Pics/Logo.png" width="40dvw" height="40dvh"/>
+            <button command="close" commandfor="ProfileModal"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M480-416.35 287.83-224.17Q275.15-211.5 256-211.5t-31.83-12.67Q211.5-236.85 211.5-256t12.67-31.83L416.35-480 224.17-672.17Q211.5-684.85 211.5-704t12.67-31.83Q236.85-748.5 256-748.5t31.83 12.67L480-543.65l192.17-192.18Q684.85-748.5 704-748.5t31.83 12.67Q748.5-723.15 748.5-704t-12.67 31.83L543.65-480l192.18 192.17Q748.5-275.15 748.5-256t-12.67 31.83Q723.15-211.5 704-211.5t-31.83-12.67L480-416.35Z"/></svg></button>
+        </header>
+        <center>
+            <img class="ModalProfileimg" src="https://media.istockphoto.com/id/1208175274/vector/avatar-vector-icon-simple-element-illustrationavatar-vector-icon-material-concept-vector.jpg?s=612x612&w=0&k=20&c=t4aK_TKnYaGQcPAC5Zyh46qqAtuoPcb-mjtQax3_9Xc="/>
+
+            <table>
+                <tr>
+                    <th>Name:&ensp;</th>
+                    <td class="UserName"></td>
+                </tr>
+
+                <tr>
+                    <th>Status:&ensp;</th>
+                    <td class="UserStatus"></td>
+                </tr>
+            </table>
+        </center>
+    </dialog>
+
+    <!-- Sidebar -->
+    <aside class="Sidebar">
+        <!-- 1 -->
+        <button autofocus>
+            <section>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M151.87-202.87v-355.7q0-21.63 9.58-40.9 9.57-19.27 26.72-31.94L425.3-809.26q24.11-18.39 54.7-18.39 30.59 0 54.7 18.39l237.13 177.85q17.15 12.67 26.72 31.94 9.58 19.27 9.58 40.9v355.7q0 37.78-26.61 64.39t-64.39 26.61H607.41q-19.15 0-32.32-13.17-13.18-13.18-13.18-32.33v-199.04q0-19.16-13.17-32.33-13.17-13.17-32.33-13.17h-72.82q-19.16 0-32.33 13.17-13.17 13.17-13.17 32.33v199.04q0 19.15-13.18 32.33-13.17 13.17-32.32 13.17H242.87q-37.78 0-64.39-26.61t-26.61-64.39Z"/></svg>
+                Dashboard
+            </section>
+        </button>
+        <!-- 2 -->
+        <button>
+            <section>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m231.87-231.87-82.44 82.44q-21.63 21.63-49.59 9.81-27.97-11.81-27.97-42.4v-615.11q0-37.78 26.61-64.39t64.39-26.61h634.26q37.78 0 64.39 26.61t26.61 64.39v474.26q0 37.78-26.61 64.39t-64.39 26.61H231.87ZM280-400h240q17 0 28.5-11.5T560-440q0-17-11.5-28.5T520-480H280q-17 0-28.5 11.5T240-440q0 17 11.5 28.5T280-400Zm0-120h400q17 0 28.5-11.5T720-560q0-17-11.5-28.5T680-600H280q-17 0-28.5 11.5T240-560q0 17 11.5 28.5T280-520Zm0-120h400q17 0 28.5-11.5T720-680q0-17-11.5-28.5T680-720H280q-17 0-28.5 11.5T240-680q0 17 11.5 28.5T280-640Z"/></svg>
+                Groups
+            </section>
+        </button>
+        <!-- 3 -->
+        <button>
+            <section>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m423.28-431.41-80.02-79.79q-12.43-12.43-31.23-12.31-18.79.12-31.23 12.55-12.43 12.44-12.43 31.11 0 18.68 12.43 31.11l110.42 110.65q13.76 13.68 32.11 13.68 18.34 0 32.02-13.68l222.41-222.65q12.44-12.43 12.32-31.23-.12-18.79-12.56-31.23-12.43-12.43-31.11-12.43-18.67 0-31.11 12.43L423.28-431.41ZM202.87-111.87q-37.78 0-64.39-26.61t-26.61-64.39v-554.26q0-37.78 26.61-64.39t64.39-26.61h554.26q37.78 0 64.39 26.61t26.61 64.39v554.26q0 37.78-26.61 64.39t-64.39 26.61H202.87Zm0-91h554.26v-554.26H202.87v554.26Zm0-554.26v554.26-554.26Z"/></svg>
+                Tasks
+            </section>
+        </button>
+        <!-- 4 -->
+        <button>
+            <section>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M162.87-151.87q-37.78 0-64.39-26.61t-26.61-64.39v-474.26q0-38.02 26.61-64.51 26.61-26.49 64.39-26.49h196q18.15 0 34.68 6.84 16.54 6.83 29.21 19.51L480-724.54h362.63q19.15 0 32.33 13.17 13.17 13.17 13.17 32.33 0 19.15-13.17 32.32-13.18 13.18-32.33 13.18H325.24q-65.11 0-113.74 40.91-48.63 40.91-48.63 103.78v247.18l75.41-247.7q9.2-29.11 33.33-46.64t53.96-17.53h497.34q46.5 0 73.47 37.16t13.82 80.66l-64.35 212.26q-10.87 34.37-36.56 52.98-25.68 18.61-60.53 18.61H162.87Z"/></svg>
+                Projects
+            </section>
+        </button>
+        <!-- 5 -->
+        <button>
+            <section>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M32.59-268.41q0-36.23 18.74-66.59 18.74-30.37 49.8-46.35 62.72-31.24 127.66-46.98 64.95-15.74 131.93-15.74 67.43 0 132.39 15.62 64.96 15.62 127.19 46.86 31.06 15.95 49.81 46.25 18.74 30.3 18.74 66.93v29.61q0 37.78-26.61 64.39t-64.39 26.61H123.59q-37.79 0-64.39-26.61-26.61-26.61-26.61-64.39v-29.61ZM836.41-147.8h-94.58q13.63-20.16 20.32-43.41 6.7-23.25 6.7-47.59v-35.7q0-45.67-24.5-89.4-24.5-43.73-72.85-74.88 49.33 6.24 94.92 21.33 45.6 15.1 84.36 35.86 36.96 20 56.8 47.21 19.83 27.2 19.83 59.4v36.18q0 37.78-26.61 64.39-26.6 26.61-64.39 26.61ZM244.73-532.14q-48.08-48.08-48.08-115.99t48.08-115.99q48.07-48.08 115.99-48.08 67.91 0 115.99 48.08 48.07 48.08 48.07 115.99t-48.07 115.99q-48.08 48.07-115.99 48.07-67.92 0-115.99-48.07Zm479.52-.12q-48.18 48.19-115.84 48.19-11.28 0-28.04-2.61-16.76-2.62-28.72-6.1 27.48-32.48 42.1-72.4 14.62-39.92 14.62-82.92 0-42.99-14.62-82.94-14.62-39.96-42.1-72.44 14.24-5.24 28.24-6.98 14-1.74 28.37-1.74 67.72 0 115.95 48.2 48.23 48.19 48.23 115.87 0 67.67-48.19 115.87ZM123.59-238.8h474.26v-28.42q0-10.77-5.5-19.58-5.5-8.81-14.5-13.7-52.57-26.04-106.85-39.3-54.28-13.27-110.28-13.27-55.52 0-110.29 13.27-54.76 13.26-106.84 39.3-9 4.89-14.5 13.7-5.5 8.81-5.5 19.58v28.42Zm291.24-355.18q22.54-22.51 22.54-54.11 0-31.61-22.51-54.15-22.5-22.54-54.1-22.54-31.61 0-54.15 22.5-22.54 22.51-22.54 54.11 0 31.6 22.5 54.15 22.51 22.54 54.11 22.54 31.6 0 54.15-22.5ZM360.72-238.8Zm0-409.33Z"/></svg>
+                Employees
+            </section>
+        </button>
+        <!-- 6 -->
+        <button>
+            <section>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M686.22-151.87q-19.15 0-32.33-13.17-13.17-13.18-13.17-32.33v-200.48q0-19.15 13.17-32.32 13.18-13.18 32.33-13.18h76.41q19.15 0 32.33 13.18 13.17 13.17 13.17 32.32v200.48q0 19.15-13.17 32.33-13.18 13.17-32.33 13.17h-76.41Zm-244.31 0q-19.15 0-32.32-13.17-13.18-13.18-13.18-32.33v-565.26q0-19.15 13.18-32.33 13.17-13.17 32.32-13.17h76.18q19.15 0 32.32 13.17 13.18 13.18 13.18 32.33v565.26q0 19.15-13.18 32.33-13.17 13.17-32.32 13.17h-76.18Zm-244.54 0q-19.15 0-32.33-13.17-13.17-13.18-13.17-32.33v-365.26q0-19.15 13.17-32.33 13.18-13.17 32.33-13.17h76.41q19.15 0 32.33 13.17 13.17 13.18 13.17 32.33v365.26q0 19.15-13.17 32.33-13.18 13.17-32.33 13.17h-76.41Z"/></svg>
+                Reports
+            </section>
+        </button>
+        <!-- 7 -->
+        <button>
+            <section>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M428.46-71.87q-28.2 0-48.54-18.6-20.33-18.6-24.33-45.79l-9-66.24q-11.09-4.28-21.04-10.33-9.94-6.04-19.51-12.84l-61.76 26q-25.95 11.24-52.15 2.12-26.2-9.12-40.67-33.32l-51.55-90.37q-14.48-23.96-8.36-51.03 6.12-27.08 28.08-44.56l52.76-40q-.76-6.04-.76-11.58v-23.18q0-5.54.76-11.58l-52.76-39.76q-22.2-17.48-28.2-44.56-6-27.08 8.48-51.27l51.55-90.13q14.47-23.96 40.55-33.2 26.08-9.24 52.03 2l62.48 26q9.57-6.8 19.65-12.73 10.09-5.92 20.42-10.2l9-66.48q4-27.43 24.33-46.03 20.34-18.6 48.54-18.6h103.08q28.2 0 48.54 18.6 20.33 18.6 24.33 46.03l9 66.48q11.09 4.28 21.04 10.2 9.94 5.93 19.51 12.73l61.76-26q25.95-11.24 52.15-2t40.67 33.2l51.55 90.13q14.48 24.19 8.48 51.27-6 27.08-28.2 44.56l-53 39.76q.76 6.04.76 11.58V-480q0 6.04-.12 11.59-.12 5.54-1.64 11.58l53 39.76q22.2 17.48 28.2 44.56 6 27.08-8.48 51.27l-52.55 90.37q-14.47 23.96-40.55 33.2-26.08 9.24-52.03-2l-60.48-26q-9.57 6.8-19.65 12.84-10.09 6.05-20.42 10.33l-9 66.24q-4 27.19-24.33 45.79-20.34 18.6-48.54 18.6H428.46ZM481.28-340q58 0 99-41t41-99q0-58-41-99t-99-41q-58.76 0-99.38 41t-40.62 99q0 58 40.62 99t99.38 41Z"/></svg>
+                Settings
+            </section>
+        </button>
+    </aside>
+    
+    <section class="Content-Section">Content Section</section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <script>
+        const ActivePointer = document.getElementById('ActivePointer');
+
+        const UserName = document.getElementsByClassName('UserName');
+        const UserStatus = document.getElementsByClassName('UserStatus');
+
+        [UserName[0], UserName[1]].forEach(e => {
+            e.innerText = 'Haroon Arshad';
+        });
+
+        [UserStatus[0], UserStatus[1]].forEach(e => {
+            e.innerText = 'Sleeping'
+        })
+
+        ActivePointer.style.color = 'red';
+        ActivePointer.style.color = UserStatus[1].innerText.toLowerCase() === 'active' ? "green" : "red";
+    </script>
+  </body>
+</html>
