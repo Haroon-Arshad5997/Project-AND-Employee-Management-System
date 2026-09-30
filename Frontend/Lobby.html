@@ -44,6 +44,38 @@
             grid-template-rows: 6rem 1fr;
             grid-template-areas: "Navbar Navbar Navbar Navbar Navbar Navbar" "Sidebar ContentSection ContentSection ContentSection ContentSection ContentSection";
         }
+        
+        .Loading-PG{
+            position: fixed;
+            z-index: 1000;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-secondary);
+            font-weight: 600;
+            letter-spacing: 1px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader {
+            width: 90px;
+            height: 14px;
+            --c:#ffffff 92%,#ffffff00;
+            background: 
+                radial-gradient(circle 7px at bottom,var(--c)) 0 0,
+                radial-gradient(circle 7px at top   ,var(--c)) 0 100%;
+            background-size: calc(100%/4) 50%;
+            background-repeat: repeat-x;
+            animation: l11 1s infinite;
+        }
+
+        .Loading-PG.hide{
+            opacity: 0;
+            visibility: hidden;
+        }
 
         .Navbar{
             border-bottom: 1px solid var(--primary-hover);
@@ -158,6 +190,45 @@
             background-color: rgba(0, 0, 0, 0.66);
         }
 
+        #MenuModal{
+            background-color: var(--bg-main);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            width: 90dvw;
+            height: 90dvh;
+            color: var(--text-main);
+            align-self: center;
+            justify-self: center;
+            padding: 20px;
+
+            header{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            button{
+                background-color: transparent;
+                border: 0px;
+                color: var(--text-main);
+                fill: var(--text-main);
+                transition: 0.5s ease-in-out;
+            }
+
+            button:hover{
+                transform: rotate(360deg);
+            }
+        }
+
+        #MenuModal:open{
+            animation: FadeIn 0.5s ease;
+        }
+
+        #MenuModal:open::backdrop{
+            background-color: rgba(0, 0, 0, 0.66);
+        }
+
         .ModalProfileimg{
             border-radius: 100%;
             width: 20dvw;
@@ -188,10 +259,66 @@
             }
         }
 
+        .ViewProgressTabs{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+
+            div{
+                background-color: var(--bg-main);
+                border: 1px solid var(--primary);
+                color: var(--text-main);
+                padding: 20px;
+                border-radius: 10px;
+                transition: 0.5s ease;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+                line-height: 5px;
+            }
+
+            div:hover{
+                transform: translateY(-10px);
+            }
+        }
+
         @keyframes FadeIn {
             from{opacity: 0; transform: translateY(-20px);}
             to{opacity: 1; transform: translateX(0px);}
         }
+
+        @keyframes l11 {
+            80%,100% {background-position: calc(100%/3) 0,calc(100%/-3) 100%}
+        }
+
+        @keyframes FadeIn {
+            from{
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+            to{
+                transform: translateY(0px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes BlurIn {
+            from{
+                filter: blur(20px);
+            }
+            to{
+                filter: blur(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .ViewProgressTabs{
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
 
         @media (max-width: 769px) {
             .Logo-Section{
@@ -229,6 +356,24 @@
                 }
             }
         }
+
+        @media (max-width: 426px) {
+            .Sidebar{
+                display: none;
+            }
+
+            .Content-Section{
+                width: 100dvw;
+            }
+
+            .MenuBTN{
+                display: block;
+            }
+
+            .ViewProgressTabs{
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
     </style>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -238,6 +383,12 @@
   </head>
 
   <body>
+    <!-- Loading Page -->
+    <div class="Loading-PG" id="LoadingScreen">
+        <img src="Pics/Logo.png" width="100rem" height="100rem"/>
+        <h3>Please Wait!</h3>
+        <div class="loader"></div>
+    </div>
 
     <!-- Navbar -->
     <header class="Navbar">
@@ -252,15 +403,21 @@
         </section>
 
         <!-- Profile Section -->
-        <section class="Profile-Section">
+        <section class="Profile-Section d-flex flex-row">
 
             <button id="ProfileBTN" command="show-modal" commandfor="ProfileModal">
                 <img src="https://media.istockphoto.com/id/1208175274/vector/avatar-vector-icon-simple-element-illustrationavatar-vector-icon-material-concept-vector.jpg?s=612x612&w=0&k=20&c=t4aK_TKnYaGQcPAC5Zyh46qqAtuoPcb-mjtQax3_9Xc="/>
                 <section>
                     <p class="UserName"></p>
-                    <b id="ActivePointer">●</b>
-                    <sub class="UserStatus"></sub>
+                    <section style="align-items: center;">
+                        <b id="ActivePointer">●&ensp;</b>
+                        <sub class="UserStatus"></sub>
+                    </section>
                 </section>
+            </button>
+
+            <button class="MenuBTN" command="show-modal" commandfor="MenuModal">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M160-240q-17 0-28.5-11.5T120-280q0-17 11.5-28.5T160-320h640q17 0 28.5 11.5T840-280q0 17-11.5 28.5T800-240H160Zm0-200q-17 0-28.5-11.5T120-480q0-17 11.5-28.5T160-520h640q17 0 28.5 11.5T840-480q0 17-11.5 28.5T800-440H160Zm0-200q-17 0-28.5-11.5T120-680q0-17 11.5-28.5T160-720h640q17 0 28.5 11.5T840-680q0 17-11.5 28.5T800-640H160Z"/></svg>
             </button>
 
         </section>
@@ -289,8 +446,17 @@
         </center>
     </dialog>
 
+    <!-- Menu Modal -->
+    <dialog id="MenuModal">
+        <header>
+            <img src="Pics/Logo.png" width="40dvw" height="40dvh"/>
+            <button command="close" commandfor="MenuModal">Close</button>
+        </header>
+    </dialog>
+
     <!-- Sidebar -->
     <aside class="Sidebar">
+        <!-- Buttons -->
         <!-- 1 -->
         <button autofocus>
             <section>
@@ -342,11 +508,39 @@
         </button>
     </aside>
     
-    <section class="Content-Section">Content Section</section>
+    <section class="Content-Section">
+
+        <section style="line-height: 14px; margin-bottom: 40px; margin-top: 20px;">
+            <h2 style="font-weight: 500;">Dashboard</h2>
+            <sub>Here's what's happening with your team and projects.</sub>
+        </section>
+        <!-- View Tabs -->
+        <section class="ViewProgressTabs">
+            <div>
+                <section style="background-color: #14B8A6; width: min-content; padding: 20px; border-radius: 10px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M40-272q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v32q0 33-23.5 56.5T600-160H120q-33 0-56.5-23.5T40-240v-32Zm698 112q11-18 16.5-38.5T760-240v-40q0-44-24.5-84.5T666-434q51 6 96 20.5t84 35.5q36 20 55 44.5t19 53.5v40q0 33-23.5 56.5T840-160H738ZM247-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47Zm466 0q-47 47-113 47-11 0-28-2.5t-28-5.5q27-32 41.5-71t14.5-81q0-42-14.5-81T544-792q14-5 28-6.5t28-1.5q66 0 113 47t47 113q0 66-47 113Z"/></svg>
+                </section>
+
+                <section>
+                    <p>Total Groups:</p>
+                    <p id="totalGroups">--</p>
+                </section>
+            </div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </section>
+    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
     <script>
+        const LoadingPG = document.getElementById('LoadingScreen');
+        window.addEventListener('load', () => {
+            LoadingPG.style.display = 'none';
+            document.body.style.animation = 'BlurIn 1s ease';
+        });
+
         const ActivePointer = document.getElementById('ActivePointer');
 
         const UserName = document.getElementsByClassName('UserName');
@@ -357,7 +551,7 @@
         });
 
         [UserStatus[0], UserStatus[1]].forEach(e => {
-            e.innerText = 'Sleeping'
+            e.innerText = 'Active'
         })
 
         ActivePointer.style.color = 'red';
